@@ -6,3 +6,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Database config
+database.ini
+
+__pycache__
