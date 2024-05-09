@@ -1,6 +1,6 @@
 import csv
-import psycopg2
-from config import load_config
+from utilities import execute_commands
+from settings import CSV_DIR
 
 def _format_row(row):
     def cast(row_str):
@@ -12,13 +12,12 @@ def _format_row(row):
     return [row[0], cast(row[1]), cast(row[2]), cast(row[3]), cast(row[4])]
 
 def insert_data():
-    data_dir = r'C:/Users/cam/Desktop/Workspaces/Data/HmData/'
     file_ext = ".csv"
     filenames = ["27", "28", "97", "98", "99"]
 
     filepaths = []
     for filename in filenames:
-        filepaths.append(data_dir + filename + file_ext)
+        filepaths.append(CSV_DIR + filename + file_ext)
     
 
     sql_commands = []
@@ -33,15 +32,7 @@ def insert_data():
                     (int(filename), *_format_row(row)))
                 )
     
-    try:
-        config = load_config()
-        with psycopg2.connect(**config) as conn:
-            with conn.cursor() as cur:
-                for command in sql_commands:
-                    cur.execute(command)
-                
-    except (psycopg2.DatabaseError, Exception) as error:
-        print(error)
+    execute_commands(sql_commands)
 
 if __name__ == '__main__':
     insert_data()

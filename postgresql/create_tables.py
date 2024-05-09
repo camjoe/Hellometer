@@ -1,5 +1,4 @@
-import psycopg2
-from config import load_config
+from utilities import execute_commands
 
 def create_tables():
     command = """
@@ -14,14 +13,7 @@ def create_tables():
         )
         """
     
-    try:
-        config = load_config()
-        with psycopg2.connect(**config) as conn:
-            with conn.cursor() as cur:
-                cur.execute(command)
-                
-    except (psycopg2.DatabaseError, Exception) as error:
-        print(error)
+    execute_commands([command])
 
 if __name__ == '__main__':
     create_tables()
