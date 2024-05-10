@@ -11,5 +11,3 @@ venv.bak/
 database.ini
 
 __pycache__
-
-db.sqlite3

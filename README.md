@@ -11,9 +11,15 @@ database
 user
 password
 - Set local directory for csv files in postgresql/settings.py
-- Run create_tables to creat table in postgresql database
+- Run create_tables to create table in postgresql database
 - Run insert_data to insert csv data into table
 
 # Run tests
 In Command line from project folder,
 - python -m unittest
+
+# Run the server
+From hellometer_dashboard run:
+- python manage.py runserver
+From dashboard run:
+- npm start
