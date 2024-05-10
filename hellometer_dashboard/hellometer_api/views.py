@@ -11,7 +11,7 @@ def vendor_dashboard(request):
 
 @api_view(['GET'])
 def vendor_clients(request):
-    clients = VendorClients.objects.all()
-    serializer = VendorClientsSerializer(clients)
+    clients = VendorClients.objects.all()[:4] # NOTE: testing with first four data points
+    serializer = VendorClientsSerializer(clients, many=True)
 
     return Response(serializer.data)

@@ -5,7 +5,7 @@ function MainDashboard() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/dashboard/')
+    axios.get('http://localhost:8000/api/vendor_clients/')
       .then(response => {
         setMessage(response.data.message);
       })
